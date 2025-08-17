@@ -1,5 +1,6 @@
 package com.faleite.i_cmatheus.service;
 
+import com.faleite.i_cmatheus.exceptions.ResourceNotFoundException;
 import com.faleite.i_cmatheus.model.Product;
 import com.faleite.i_cmatheus.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(Long id){
-        return productRepository.findById(id);
+    public Product getProductById(Long id){
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product ID " + id + " not foud"));
     }
 
     public Product saveProduct(Product product){
@@ -29,6 +31,9 @@ public class ProductService {
     }
 
     public void deleteProduct(Long id){
+        if (!productRepository.existsById(id)){
+            throw new ResourceNotFoundException("Product ID " + id + " not foud");
+        }
         productRepository.deleteById(id);
     }
 }

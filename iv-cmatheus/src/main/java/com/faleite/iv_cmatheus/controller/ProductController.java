@@ -1,9 +1,7 @@
 package com.faleite.iv_cmatheus.controller;
 
-import com.faleite.iv_cmatheus.exceptions.HandleResorceNotFoundException;
 import com.faleite.iv_cmatheus.model.Product;
 import com.faleite.iv_cmatheus.service.ProductService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

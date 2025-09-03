@@ -24,22 +24,6 @@ public class ProductController {
         return productService.getProducts();
     }
 
-    /*@GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id){
-        return productService.getProductById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }*/
-    /*@GetMapping("/{id}")
-    public ResponseEntity<?> getProductById(@PathVariable Long id){
-        try {
-            Product product = productService.getProductById(id);
-            return ResponseEntity.ok(product);
-
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }*/
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductById(@PathVariable Long id){
         Product product = productService.getProductById(id);
@@ -51,15 +35,6 @@ public class ProductController {
         return productService.saveProduct(product);
     }
 
-    /*@DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id){
-        try {
-            productService.deleteProduct(id);
-            return ResponseEntity.noContent().build();
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }*/
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);

@@ -1,5 +1,6 @@
 package com.faleite.base_vii.service;
 
+import com.faleite.base_vii.exceptions.ResourceNotFoundException;
 import com.faleite.base_vii.model.Product;
 import com.faleite.base_vii.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -20,22 +21,19 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(Long id){
-        return productRepository.findById(id);
+    public Product getProductById(Long id){
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product ID " +id+ " not found"));
     }
 
     public Product saveProduct(Product product){
         return productRepository.save(product);
     }
 
-    /*public void deleteProductById(Long id){
-        if (!productRepository.existsById(id)) {
-            return;
-        }
-        productRepository.deleteById(id);
-    }*/
-
     public void deleteProductById(Long id){
+        if (!productRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Product ID " +id+ " not found");
+        }
         productRepository.deleteById(id);
     }
 }

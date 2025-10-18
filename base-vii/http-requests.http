@@ -1,0 +1,21 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+GET localhost:8080/api/products
+
+###
+POST localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "Banana Branca",
+  "price": 12.45
+}
+
+###
+GET localhost:8080/api/products/1
+
+###
+DELETE localhost:8080/api/products/1
